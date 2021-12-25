@@ -89,7 +89,7 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['MY_APP_DATABASE_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
   # database: alumni_db_backend_production
   # username: test6
   # password: test6
