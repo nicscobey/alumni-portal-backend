@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       puts userExists 
 
       if userExists
+        render json: {userExists}
         render json: {error: "User already exists"}
       elsif @user.valid?
         token = encode_token({user_id: @user.id})
