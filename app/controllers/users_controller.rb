@@ -3,20 +3,39 @@ class UsersController < ApplicationController
   
     # REGISTER
     def create
-      @user = User.create(user_params)
 
-      userExists = User.find_by(email: params[:email])
+      #it creates the user here, which is why it's making userExists true. so what does @user.valid? do?
+      # @user = User.create(user_params)
+
+      userExists = User.exists?(email: params[:email])
+
+      # userExists = User.find_by(email: params[:email])
+      # userA = User.find_by(email: params[:email])
       puts userExists 
+      # puts userA
+      # puts userA.email
+      # puts User.all
 
       if userExists
         # render json: {userExists}
         render json: {error: "User already exists"}
-      elsif @user.valid?
-        token = encode_token({user_id: @user.id})
-        render json: {user: @user, token: token}
       else
-        render json: {error: "Invalid username or password"}
+        @user = User.create(user_params)
+        if @user.valid?
+          token = encode_token({user_id: @user.id})
+          render json: {user: @user, token: token}
+        else
+          render json: {error: "Invalid username or password"}
+        end
       end
+      # elsif @user.valid?
+      #   @user = User.create(user_params)
+
+      #   token = encode_token({user_id: @user.id})
+      #   render json: {user: @user, token: token}
+      # else
+      #   render json: {error: "Invalid username or password"}
+      # end
     end
   
     # LOGGING IN
