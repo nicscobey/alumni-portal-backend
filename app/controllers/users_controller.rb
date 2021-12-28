@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+    # before_action :authorized, only: [:auto_login]
     before_action :authorized, only: [:auto_login]
+
   
     # REGISTER
     def create
@@ -50,6 +52,16 @@ class UsersController < ApplicationController
       end
     end
   
+    def index
+      @users = User.all 
+      puts @users 
+
+      render json: @users
+    end 
+
+    def show 
+
+    end
   
     def auto_login
       render json: @user
@@ -58,7 +70,8 @@ class UsersController < ApplicationController
     private
   
     def user_params
-      params.permit(:email, :password, :age)
+      params.permit(:email)
+      # params.permit(:email, :password, :age)
     end
   
   end
