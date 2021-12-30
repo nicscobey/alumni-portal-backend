@@ -1,8 +1,10 @@
 class ForumsController < ApplicationController
-  before_action :set_forum, only: [:show, :update, :destroy]
+  before_action only: [:index, :show, :update, :destroy]
+  # before_action :authorized
 
   # GET /forums
   def index
+    # render json: "hi"
     @forums = Forum.all
 
     render json: @forums
@@ -41,9 +43,9 @@ class ForumsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_forum
-      @forum = Forum.find(params[:id])
-    end
+    # def set_forum
+    #   @forum = Forum.find(params[:id])
+    # end
 
     # Only allow a list of trusted parameters through.
     def forum_params

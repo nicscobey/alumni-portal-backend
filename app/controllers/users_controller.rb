@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     # before_action :authorized, only: [:auto_login]
-    before_action :authorized, only: [:auto_login]
+    before_action :authorized, only: [:auto_login, :index]
 
   
     # REGISTER
@@ -54,6 +54,7 @@ class UsersController < ApplicationController
   
     def index
       @users = User.all 
+      puts "nic"
       puts @users 
 
       render json: @users
