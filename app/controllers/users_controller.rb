@@ -23,6 +23,7 @@ class UsersController < ApplicationController
         render json: {error: "User already exists"}
       else
         @user = User.create(user_params)
+        
         if @user.valid?
           token = encode_token({user_id: @user.id})
           render json: {user: @user, token: token}
@@ -71,7 +72,7 @@ class UsersController < ApplicationController
     private
   
     def user_params
-      params.permit(:email)
+      params.permit(:email, :firstname, :lastname, :password)
       # params.permit(:email, :password, :age)
     end
   

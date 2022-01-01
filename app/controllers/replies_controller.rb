@@ -47,6 +47,6 @@ class RepliesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reply_params
-      params.require(:reply).permit(:message, :user_id, :forum_id)
+      params.require(:reply).permit(:message, :user_id, :forum_id, :firstname, :lastname)
     end
 end
