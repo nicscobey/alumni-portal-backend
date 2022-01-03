@@ -55,8 +55,8 @@ class UsersController < ApplicationController
   
     def index
       @users = User.all 
-      puts "nic"
-      puts @users 
+      # puts "nic"
+      # puts @users 
 
       render json: @users
     end 
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     private
   
     def user_params
-      params.permit(:email, :firstname, :lastname, :password)
+      params.permit(:email, :firstname, :lastname, :password, :program)
       # params.permit(:email, :password, :age)
     end
   
